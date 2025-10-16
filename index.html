@@ -270,6 +270,37 @@
         .inline-code.f3 {
             background: var(--f3-red);
         }
+
+        /* SVG icons inside function keys */
+        .inline-code.f1::before,
+        .inline-code.f2::before,
+        .inline-code.f3::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 18px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        /* F1 - Key Icon (pointing top-right) */
+        .inline-code.f1::before {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="14" r="3.5"/><line x1="9.5" y1="11.5" x2="18" y2="3"/><line x1="16" y1="5" x2="16" y2="3"/></svg>');
+        }
+
+        /* F2 - Waveform/Signal Icon (square wave) */
+        .inline-code.f2::before {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,17 3,9 7,9 7,17 11,17 11,9 15,9 15,17 19,17 19,9 21,9"/></svg>');
+        }
+
+        /* F3 - Clock Icon (12 and 3 o'clock) */
+        .inline-code.f3::before {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="12" x2="12" y2="6"/><line x1="12" y1="12" x2="17" y2="12"/></svg>');
+        }
     </style>
 </head>
 <body>

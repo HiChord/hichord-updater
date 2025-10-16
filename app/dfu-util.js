@@ -169,6 +169,8 @@ var device = null;
             if (!progressBar) {
                 progressBar = document.createElement("progress");
                 logContext.appendChild(progressBar);
+                // Scroll to show the progress bar when it's first created
+                progressBar.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
             progressBar.value = done;
             if (typeof total !== 'undefined') {

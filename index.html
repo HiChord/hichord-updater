@@ -438,9 +438,88 @@
             letter-spacing: 0.05em;
             margin-left: 8px;
         }
+
+        /* Global HiChord Navigation */
+        .hichord-global-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 48px;
+            background: var(--black);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            z-index: 10000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Segoe UI', sans-serif;
+        }
+
+        .hichord-global-nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            transition: all 0.2s ease;
+            padding: 4px 12px;
+            border-radius: 3px;
+        }
+
+        .hichord-global-nav a:hover {
+            color: var(--accent);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .hichord-global-nav a.active {
+            color: var(--accent);
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .hichord-global-nav .nav-home {
+            font-weight: 600;
+            margin-right: 8px;
+            padding-right: 20px;
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Adjust body for fixed nav */
+        body {
+            padding-top: 48px;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .hichord-global-nav {
+                gap: 16px;
+                padding: 0 12px;
+                justify-content: space-between;
+            }
+
+            .hichord-global-nav a {
+                font-size: 9px;
+                padding: 3px 8px;
+                letter-spacing: 0.8px;
+            }
+
+            .hichord-global-nav .nav-home {
+                margin-right: 4px;
+                padding-right: 12px;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Global HiChord Navigation -->
+    <nav class="hichord-global-nav">
+        <a href="https://hichord.shop" class="nav-home">HiChord</a>
+        <a href="https://manual.hichord.shop">Manual</a>
+        <a href="https://app.hichord.shop">Companion</a>
+        <a href="https://update.hichord.shop" class="active">Updater</a>
+    </nav>
+
     <div class="container">
         <div class="header">
             <h1>HiChord<sup>™</sup></h1>

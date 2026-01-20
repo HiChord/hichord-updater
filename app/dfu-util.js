@@ -184,6 +184,8 @@ var device = null;
         let downloadButton = document.querySelector("#download");
         let statusDisplay = document.querySelector("#status");
         let downloadLog = document.querySelector("#downloadLog");
+        let firmwareSelect = document.querySelector("#firmwareSelect");
+        let versionInfo = document.querySelector("#versionInfo");
 
         let transferSize = 1024;
         let manifestationTolerant = true;
@@ -192,16 +194,35 @@ var device = null;
         // Load binary file on page load
         setLogContext(downloadLog);
 
-        // Load firmware
-        fetch('firmware/hichord_unified.bin')
-            .then(response => response.arrayBuffer())
-            .then(buffer => {
-                firmwareFile = buffer;
-                console.log(`Loaded firmware: ${niceSize(firmwareFile.byteLength)}`);
-            })
-            .catch(error => {
-                console.error('Failed to load firmware:', error);
-            });
+        // Function to load firmware from selected option
+        function loadSelectedFirmware() {
+            let selectedOption = firmwareSelect.options[firmwareSelect.selectedIndex];
+            let firmwarePath = selectedOption.value;
+            let version = selectedOption.dataset.version;
+            let build = selectedOption.dataset.build;
+
+            // Update version info display
+            versionInfo.textContent = `Firmware Version: ${version} | Build: ${build}`;
+
+            // Load the firmware binary
+            fetch(firmwarePath)
+                .then(response => response.arrayBuffer())
+                .then(buffer => {
+                    firmwareFile = buffer;
+                    console.log(`Loaded firmware (${version}): ${niceSize(firmwareFile.byteLength)}`);
+                    statusDisplay.textContent = `Ready - ${version} loaded (${niceSize(firmwareFile.byteLength)})`;
+                })
+                .catch(error => {
+                    console.error('Failed to load firmware:', error);
+                    statusDisplay.textContent = 'Error loading firmware';
+                });
+        }
+
+        // Load firmware on page load
+        loadSelectedFirmware();
+
+        // Reload firmware when selection changes
+        firmwareSelect.addEventListener('change', loadSelectedFirmware);
 
         function onDisconnect(reason) {
             if (reason) {
